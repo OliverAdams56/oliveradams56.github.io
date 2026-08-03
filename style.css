@@ -1,0 +1,236 @@
+/* --- Variables & Base Setup --- */
+:root {
+    --bg-main: #FDFBF7;        /* Off-white/sand background */
+    --bg-sec: #F4EFE6;         /* Slightly darker earthy tone for cards/forms */
+    --text-main: #3E3B35;      /* Deep brown/charcoal for readable text */
+    --text-muted: #6B665C;     /* Softer text for subtitles */
+    --primary: #C25934;        /* Warm rust/terracotta accent color */
+    --border-color: #E6DFD1;   /* Soft border color */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* --- Header & Headshot Integration --- */
+header {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.bio {
+    margin-bottom: 1.25rem;
+}
+
+.profile-container {
+    flex-shrink: 0;
+    width: 220px;
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid var(--bg-sec);
+    box-shadow: 0 8px 20px rgba(62, 59, 53, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(62, 59, 53, 0.15);
+}
+
+/* --- Typography --- */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-main);
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #A04526;
+    text-decoration: underline;
+}
+
+/* --- Layout & Project Cards --- */
+section {
+    margin-bottom: 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--bg-sec);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(62, 59, 53, 0.08);
+}
+
+.card h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+/* --- Tags --- */
+.tags {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background-color: #E6DFD1;
+    color: var(--text-main);
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* --- Freelance Section --- */
+#freelance ul {
+    list-style-position: inside;
+    margin-top: 1rem;
+}
+
+#freelance li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- Contact Form Styles --- */
+.contact-form {
+    background: var(--bg-sec);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: inherit;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(194, 89, 52, 0.1);
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #A04526;
+    opacity: 0.9;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 680px) {
+    body {
+        padding: 1.5rem;
+    }
+    
+    .header-container {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .profile-container {
+        width: 160px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

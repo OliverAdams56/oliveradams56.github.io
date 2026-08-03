@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Oliver Adams | Software Engineer</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div class="header-container">
+				<div class="header-content">
+					<div class="header-top">
+						<h1>Oliver Adams</h1>
+					</div>
+					<p class="subtitle">Software Engineer</p>
+					<p class="bio">B.S. in Computer Science, Brooklyn College. I build scalable data pipelines, robust mobile architectures, and interactive digital experiences. Formerly Market Data at BNY Mellon and Research Assistant at BMCC.</p>
+					<p class="header-links">
+						<a href="#contact">Contact</a> • 
+						<a href="https://linkedin.com/in/oliveradams56" target="_blank" rel="noopener noreferrer">LinkedIn</a> • 
+						<a href="https://github.com/OliverAdams56" target="_blank" rel="noopener noreferrer">GitHub</a>
+					</p>
+				</div>
+				<div class="profile-container">
+					<img 
+					src="/Users/lowkiisavage250/Desktop/Programs/Portfolio/image.jpg" 
+					alt="Oliver Adams - Software Engineer" 
+					class="profile-img" 
+					width="380" 
+					height="475" 
+					loading="eager"
+					>
+				</div>
+			</div>
+		</header>
+
+		<section id="data-analytics">
+			<h2>Data & Analytics</h2>
+			<div class="grid">
+				<div class="card">
+					<h3>Tech Layoffs Analysis</h3>
+					<p>Engineered a regression model to analyze global industry trends, identifying key correlations between venture funding and layoff severity.</p>
+					<div class="tags">
+						<span class="tag">Python</span>
+						<span class="tag">Pandas</span>
+						<span class="tag">Seaborn</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="web-mobile">
+			<h2>Web & Mobile Development</h2>
+			<div class="grid">
+				<div class="card">
+					<h3>Frappe Framework (Open Source)</h3>
+					<p>Authored production code (PR #40162) to resolve strict WCAG 2.1 screen-reader violations by implementing programmatic ARIA labels in sidebar navigation.</p>
+					<div class="tags">
+						<span class="tag">JavaScript</span>
+						<span class="tag">a11y</span>
+					</div>
+				</div>
+				<div class="card">
+					<h3>WakeUpApp</h3>
+					<p>Developed a native mobile application featuring customized alarm logic and intuitive UI components.</p>
+					<div class="tags">
+						<span class="tag">Kotlin</span>
+						<span class="tag">Mobile Architecture</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="interactive-hardware">
+			<h2>Interactive & Hardware</h2>
+			<div class="grid">
+				<div class="card">
+					<h3>Physics-Based Game Development</h3>
+					<p>Built interactive 3D graphics and in-browser game loops featuring real-time collision detection and rendering.</p>
+					<div class="tags">
+						<span class="tag">JavaScript</span>
+						<span class="tag">Three.js</span>
+						<span class="tag">Cannon.js</span>
+					</div>
+				</div>
+				<div class="card">
+					<h3>Robotics Programming</h3>
+					<p>Programmed hardware interactions and algorithmic movement logic for custom robotics projects.</p>
+					<div class="tags">
+						<span class="tag">C/C++</span>
+						<span class="tag">Hardware Integration</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="freelance">
+			<h2>Freelance Services</h2>
+			<p>I am available for contract work focusing on:</p>
+			<ul>
+				<li><strong>Data Pipeline Construction:</strong> Untangling messy databases and building automated SQL/Python reporting.</li>
+				<li><strong>Accessibility Auditing:</strong> Guaranteeing your web applications meet strict WCAG compliance standards.</li>
+			</ul>
+		</section>
+
+		<section id="contact">
+			<h2>Contact Me</h2>
+			<form action="https://formspree.io/f/mlgqqaav" method="POST" class="contact-form">
+				<input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+				<div class="form-group">
+					<label for="name">Your Name:</label>
+					<input type="text" id="name" name="name" placeholder="Your name.." required>
+				</div>
+				<div class="form-group">
+					<label for="email">Your Email:</label>
+					<input type="email" id="email" name="email" placeholder="Your email address.." required>
+				</div>
+				<div class="form-group">
+					<label for="subject">Subject:</label>
+					<input type="text" id="subject" name="subject" placeholder="Reason for email.." required>
+				</div>
+				<div class="form-group">
+					<label for="message">Your message:</label>
+					<textarea id="message" name="message" placeholder="Type your message" rows="5" required></textarea>
+				</div>
+				<button type="submit" class="submit-btn">Send</button>
+			</form>
+		</section>
+	</div>
+
+	<script src="app.js"></script>
+</body>
+</html>
