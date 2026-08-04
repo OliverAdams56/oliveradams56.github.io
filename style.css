@@ -235,7 +235,7 @@ section {
     }
 
     .profile-container {
-        width: 160px;
+        align-self: center;
     }
 
     h1 {
