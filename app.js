@@ -1,44 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Smooth Scrolling for Internal Links ---
-    const initSmoothScroll = () => {
-        const anchorLinks = document.querySelectorAll('a[href^="#"]');
-
-        anchorLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('href');
-                if (targetId === '#') return;
-
+    // --- 1. Smooth Scrolling ---
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href^="#"]');
+        if (link) {
+            const targetId = link.getAttribute('href');
+            if (targetId !== '#') {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            });
-        });
-    };
+            }
+        }
+    });
 
     // --- 2. AJAX Formspree Contact Form Handling ---
-    const initContactForm = () => {
-        const form = document.querySelector('.contact-form');
-        if (!form) return;
-
+    const form = document.querySelector('.contact-form');
+    if (form) {
         const statusMessage = document.createElement('div');
         statusMessage.className = 'form-status';
-        statusMessage.style.marginTop = '1rem';
-        statusMessage.style.padding = '0.75rem 1rem';
-        statusMessage.style.borderRadius = '4px';
-        statusMessage.style.fontSize = '0.95rem';
-        statusMessage.style.fontWeight = '500';
-        statusMessage.style.display = 'none';
+        
+        Object.assign(statusMessage.style, {
+            marginTop: '1rem', padding: '0.75rem 1rem', borderRadius: '4px',
+            fontSize: '0.95rem', fontWeight: '500', display: 'none'
+        });
         form.appendChild(statusMessage);
+
+        const updateStatus = (msg, isSuccess) => {
+            statusMessage.style.display = 'block';
+            statusMessage.style.backgroundColor = isSuccess ? '#E8F5E9' : '#FFEBEE';
+            statusMessage.style.color = isSuccess ? '#2E7D32' : '#C62828';
+            statusMessage.style.border = `1px solid ${isSuccess ? '#A5D6A7' : '#EF9A9A'}`;
+            statusMessage.textContent = msg;
+        };
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const submitBtn = form.querySelector('.submit-btn');
             const originalBtnText = submitBtn.textContent;
 
@@ -46,71 +44,99 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.textContent = 'Sending...';
             statusMessage.style.display = 'none';
 
-            const formData = new FormData(form);
-
             try {
                 const response = await fetch(form.action, {
                     method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
                 });
 
                 if (response.ok) {
-                    statusMessage.style.display = 'block';
-                    statusMessage.style.backgroundColor = '#E8F5E9';
-                    statusMessage.style.color = '#2E7D32';
-                    statusMessage.style.border = '1px solid #A5D6A7';
-                    statusMessage.textContent = '✓ Thank you! Your message has been sent successfully.';
+                    updateStatus('✓ Thank you! Your message has been sent successfully.', true);
                     form.reset();
                 } else {
                     const data = await response.json();
                     throw new Error(data.error || 'Form submission failed.');
                 }
             } catch (error) {
-                statusMessage.style.display = 'block';
-                statusMessage.style.backgroundColor = '#FFEBEE';
-                statusMessage.style.color = '#C62828';
-                statusMessage.style.border = '1px solid #EF9A9A';
-                statusMessage.textContent = '✕ Oops! Something went wrong. Please try again later.';
+                updateStatus('✕ Oops! Something went wrong. Please try again later.', false);
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
             }
         });
-    };
+    }
 
-    // --- 3. Scroll Entrance Animations for Cards ---
-    const initCardAnimations = () => {
-        const cards = document.querySelectorAll('.card');
-        if (!('IntersectionObserver' in window)) return;
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
+    // --- 3. Scroll Entrance Animations ---
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
+                    obs.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        cards.forEach(card => {
+        document.querySelectorAll('.card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
             observer.observe(card);
         });
-    };
+    }
 
-    // Initialize all components
-    initSmoothScroll();
-    initContactForm();
-    initCardAnimations();
+    // --- 4. Image Lightbox (Modal) ---
+    const modal = document.getElementById('imageModal');
+    const expandedImg = document.getElementById('expandedImg');
+
+    if (modal && expandedImg) {
+        const toggleModal = (show, src = '') => {
+            modal.style.display = show ? "block" : "none";
+            document.body.style.overflow = show ? "hidden" : "auto";
+            if (show) expandedImg.src = src;
+        };
+
+        document.body.addEventListener('click', (e) => {
+            if (e.target.matches('.clickable-img')) {
+                toggleModal(true, e.target.src);
+            } else if (e.target.matches('.close-modal') || e.target === modal) {
+                toggleModal(false);
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && modal.style.display === "block") {
+                toggleModal(false);
+            }
+        });
+    }
+
+    // --- 5. ScrollSpy Sidebar Logic ---
+    if ('IntersectionObserver' in window) {
+        const sections = document.querySelectorAll('section');
+        const sideLinks = document.querySelectorAll('.side-link');
+
+        if (sections.length > 0 && sideLinks.length > 0) {
+            const spyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove 'active' class from all links
+                        sideLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add 'active' class to the link matching the current section on screen
+                        const activeLink = document.querySelector(`.side-link[href="#${entry.target.id}"]`);
+                        if (activeLink) activeLink.classList.add('active');
+                    }
+                });
+            }, { 
+                // Triggers when the section crosses the vertical center of the viewport
+                rootMargin: '-40% 0px -40% 0px' 
+            });
+
+            sections.forEach(section => spyObserver.observe(section));
+        }
+    }
+
 });

@@ -8,6 +8,30 @@
 </head>
 
 <body>
+
+	<nav class="side-nav">
+		<a href="#about" class="side-link" title="About Me">
+			<span class="side-dot"></span>
+			<span class="side-text">About</span>
+		</a>
+		<a href="#skills" class="side-link" title="Technical Skills">
+			<span class="side-dot"></span>
+			<span class="side-text">Skills</span>
+		</a>
+		<a href="#architecture" class="side-link" title="Featured Architecture">
+			<span class="side-dot"></span>
+			<span class="side-text">Architecture</span>
+		</a>
+		<a href="#freelance" class="side-link" title="Freelance Services">
+			<span class="side-dot"></span>
+			<span class="side-text">Freelance</span>
+		</a>
+		<a href="#contact" class="side-link" title="Contact Me">
+			<span class="side-dot"></span>
+			<span class="side-text">Contact</span>
+		</a>
+	</nav>
+
 	<div class="container">
 
 		<header>
@@ -19,8 +43,10 @@
 					<p class="subtitle">Software Engineer</p>
 					<p class="bio">Software Engineer building robust full-stack applications, optimizing system architectures, and engineering data-driven solutions.</p>
 					<p class="header-links">
-						<a href="#about">About</a> • 
-						<a href="#skills">Skills</a> • 
+						<a href="#about">About</a> •
+						<a href="#skills">Skills</a> •
+						<a href="#architecture">Architecture</a> •
+						<a href="#freelance">Freelance</a> •
 						<a href="#contact">Contact</a> • 
 						<a href="https://linkedin.com/in/oliveradams56" target="_blank" rel="noopener noreferrer">LinkedIn</a> • 
 						<a href="https://github.com/OliverAdams56" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -63,7 +89,6 @@
 						<span class="tag">SQL</span>
 						<span class="tag">Scheme</span>
 						<span class="tag">Swift</span>
-
 					</div>
 				</div>
 				<div class="card">
@@ -98,15 +123,37 @@
 				</div>
 			</div>
 		</section>
-		<!-- Projects Placeholder (For Phase 3) -->
-		<!--
-		<section id="projects">
-			<h2>Featured Projects</h2>
-			<div class="grid">
-				// New project cards (TED, Galaxy 9-Ball, etc.) will go here later
+
+		<section id="architecture">
+			<h2>Featured Projects & Architecture</h2>
+			<div class="featured-container">
+				<div class="featured-text">
+					<h3>End-to-End Cognitive Tracking System</h3>
+					<p>During my research at BMCC, I engineered the system architecture and interaction logic for a NAO humanoid robot designed to assist dementia patients.</p>
+					<br>
+					<ul class="featured-list">
+						<li><strong>System Architecture:</strong> Architected a two-way pipeline connecting the NAO robot's voice input/output to a centralized SQL Database, allowing authorized parties (doctors/caregivers) to securely monitor patient data.</li>
+						<li><strong>Interaction Flow:</strong> Programmed state-driven decision trees to power a dynamic memory game that tracks cognitive decline based on real-time patient responses.</li>
+					</ul>
+					<div class="tags">
+						<span class="tag">System Architecture</span>
+						<span class="tag">SQL Database</span>
+						<span class="tag">Python / NAOqi</span>
+						<span class="tag">State Machines</span>
+						<span class="tag">Qt Framework</span>
+					</div>
+				</div>
+				<div class="featured-image-wrapper">
+					<img 
+					src="robot-architecture.jpeg" 
+					alt="System Architecture and Flowchart Diagrams" 
+					class="featured-img clickable-img"
+					loading="lazy"
+					title="Click to enlarge"
+					>
+				</div>
 			</div>
 		</section>
-		-->
 		
 		<section id="freelance">
 			<h2>Freelance & Consulting Services</h2>
@@ -144,6 +191,11 @@
 				<button type="submit" class="submit-btn">Send</button>
 			</form>
 		</section>
+	</div>
+
+	<div id="imageModal" class="modal">
+		<span class="close-modal">&times;</span>
+		<img class="modal-content" id="expandedImg">
 	</div>
 
 	<script src="app.js"></script>

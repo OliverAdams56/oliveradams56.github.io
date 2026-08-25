@@ -54,17 +54,16 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* This prevents the image from shrinking or crushing the text */
+    flex-shrink: 0;
 }
 
 .profile-img {
-    /* Scales smoothly between 220px on mobile and 380px on desktop */
     width: clamp(220px, 40vw, 380px);
     height: auto;
-    aspect-ratio: 4 / 5; /* Maintains original 380x475 aspect ratio */
+    aspect-ratio: 4 / 5;
     object-fit: cover;
-    border-radius: 12px; /* Optional soft corners */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Soft depth */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease;
 }
 
@@ -166,6 +165,11 @@ section {
     margin-bottom: 0.5rem;
 }
 
+.freelance-list li {
+    margin-bottom: 0.85rem;
+    line-height: 1.7;
+}
+
 /* --- Contact Form Styles --- */
 .contact-form {
     background: var(--bg-sec);
@@ -222,7 +226,123 @@ section {
     opacity: 0.9;
 }
 
+/* --- Featured Architecture Section --- */
+.featured-container {
+    display: flex;
+    gap: 2.5rem;
+    background-color: var(--bg-sec);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.featured-text {
+    flex: 1;
+}
+
+.featured-text h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.featured-list {
+    margin-left: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.featured-list li {
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+}
+
+.featured-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.featured-img {
+    display: block; 
+    width: 100%;    
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+    background-color: #ffffff;
+}
+
+/* --- Clickable Image & Modal Styles --- */
+.clickable-img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clickable-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 8px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.2s ease;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+@keyframes zoomIn {
+    from {transform: translate(-50%, -50%) scale(0.9); opacity: 0;}
+    to {transform: translate(-50%, -50%) scale(1); opacity: 1;}
+}
+
 /* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .featured-container {
+        flex-direction: column;
+    }
+    
+    .featured-image-wrapper {
+        width: 100%;
+    }
+}
+
 @media (max-width: 680px) {
     body {
         padding: 1.5rem;
@@ -242,8 +362,61 @@ section {
         font-size: 2rem;
     }
 }
-/* --- Freelance Master List Spacing --- */
-.freelance-list li {
-    margin-bottom: 0.85rem;
-    line-height: 1.7;
+
+/* --- Fixed Side Navigation (ScrollSpy) --- */
+.side-nav {
+    position: fixed;
+    top: 50%;
+    left: 3rem; /* Positions it nicely on the left margin */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 100;
+}
+
+.side-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.side-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.side-text {
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Hover and Active State Animations */
+.side-link:hover .side-dot,
+.side-link.active .side-dot {
+    background-color: var(--primary);
+    transform: scale(1.4);
+}
+
+.side-link:hover .side-text,
+.side-link.active .side-text {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--text-main);
+}
+
+/* Hide the sidebar on smaller laptops/tablets so it doesn't overlap your text */
+@media (max-width: 1200px) {
+    .side-nav {
+        display: none;
+    }
 }
