@@ -126,7 +126,15 @@
 
 		<section id="architecture">
 			<h2>Featured Projects & Architecture</h2>
-			<div class="featured-container">
+
+			<!-- Tab Navigation Menu -->
+			<div class="tab-navigation">
+				<button class="tab-btn active" data-target="project-1">AI-Robotics Pipeline</button>
+				<button class="tab-btn" data-target="project-2">WakeUp Android App</button>
+			</div>
+
+			<!-- Tab Content 1: AI-Robotics -->
+			<div id="project-1" class="featured-container tab-pane active">
 				<div class="featured-text">
 					<h3>End-to-End Cognitive Tracking System</h3>
 					<p>During my research at BMCC, I engineered the system architecture and interaction logic for a NAO humanoid robot designed to assist dementia patients.</p>
@@ -147,6 +155,35 @@
 					<img 
 					src="robot-architecture.jpeg" 
 					alt="System Architecture and Flowchart Diagrams" 
+					class="featured-img clickable-img"
+					loading="lazy"
+					title="Click to enlarge"
+					>
+				</div>
+			</div>
+
+			<!-- Tab Content 2: WakeUp App -->
+			<div id="project-2" class="featured-container tab-pane">
+				<div class="featured-text">
+					<h3>WakeUp: Native Android Alarm Application</h3>
+					<p>Engineered a modern, reactive Android application from scratch using Kotlin and Jetpack Compose.</p>
+					<br>
+					<ul class="featured-list">
+						<li><strong>Background Services:</strong> Integrated Android's <code>AlarmManager</code> API for exact time execution, triggering a custom <code>BroadcastReceiver</code> and foreground <code>Service</code> to bypass background execution limits.</li>
+						<li><strong>Reactive Architecture:</strong> Managed asynchronous data streams and UI states using Kotlin Coroutines, <code>StateFlow</code>, and <code>DataStore</code> for persistent, thread-safe user preferences.</li>
+						<li><strong>Custom Interactions:</strong> Engineered a custom Jetpack Compose slider that requires users to drag a physical UI element to 90% completion to silence the <code>MediaPlayer</code> audio stream.</li>
+					</ul>
+					<div class="tags">
+						<span class="tag">Kotlin</span>
+						<span class="tag">Jetpack Compose</span>
+						<span class="tag">Coroutines / StateFlow</span>
+						<span class="tag">Android DataStore</span>
+					</div>
+				</div>
+				<div class="featured-image-wrapper">
+					<img 
+					src="wakeup-app.jpeg" 
+					alt="WakeUp Android App Interface" 
 					class="featured-img clickable-img"
 					loading="lazy"
 					title="Click to enlarge"

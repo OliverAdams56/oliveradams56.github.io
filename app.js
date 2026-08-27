@@ -140,3 +140,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+// --- 6. Tabbed Interface Logic ---
+    document.body.addEventListener('click', (e) => {
+        if (e.target.matches('.tab-btn')) {
+            const btn = e.target;
+            const targetId = btn.getAttribute('data-target');
+            const targetPane = document.getElementById(targetId);
+
+            if (targetPane) {
+                // Scope the change to the architecture section
+                const tabContainer = btn.closest('#architecture');
+                
+                // Remove 'active' class from all buttons and panes
+                tabContainer.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                tabContainer.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+                // Add 'active' class to the clicked button and its corresponding pane
+                btn.classList.add('active');
+                targetPane.classList.add('active');
+            }
+        }
+    });
